@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Jewelry Box - Interactive 3D Display</title>
+    
+    <!-- A-Frame Library -->
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Message -->
+    <div id="loadingMessage">Loading 3D Models...</div>
+    
+    <!-- Close Button UI -->
+    <button id="closeButton">✕ CLOSE</button>
+    
+    <a-scene 
+        background="color: #1a1a2e"
+        renderer="antialias: true; colorManagement: true; exposure: 1.5; toneMapping: ACESFilmic; physicallyCorrectLights: true"
+        vr-mode-ui="enabled: false">
+        
+        <!-- Assets Preloading for Local Files -->
+        <a-assets timeout="30000">
+            <!-- Local Model Files -->
+            <a-asset-item id="jewelryBoxModel" src="models/jewelry_box.glb"></a-asset-item>
+            <a-asset-item id="ring1Model" src="models/ring1.glb"></a-asset-item>
+            <a-asset-item id="ring2Model" src="models/ring2.glb"></a-asset-item>
+            <a-asset-item id="ring3Model" src="models/ring3.glb"></a-asset-item>
+        </a-assets>
+        
+        <!-- Camera Rig with Mouse Raycaster -->
+        <a-entity id="cameraRig" position="0 1 0">
+            <a-camera 
+                id="mainCamera"
+                position="0 -0.2 3.5" 
+                look-controls="enabled: true; reverseMouseDrag: false"
+                wasd-controls="enabled: false"
+                cursor="rayOrigin: mouse"
+                raycaster="objects: .ring-hitbox; far: 100; recursive: false">
+            </a-camera>
+        </a-entity>
+        
+        <!-- Lighting Setup for PBR -->
+        <!-- <a-entity light="type: ambient; color: #888; intensity: 0.4"></a-entity>
+        <a-entity light="type: directional; color: #FFF; intensity: 0.8" position="2 4 2"></a-entity>
+        <a-entity light="type: point; color: #FFE4B5; intensity: 0.6" position="-2 2 1"></a-entity>
+        <a-entity light="type: point; color: #FFF; intensity: 0.5" position="2 2 -1"></a-entity> -->
+        
+        <!-- Brighter ambient light -->
+<a-entity light="type: ambient; color: #FFFFFF; intensity: 0.7"></a-entity>
+
+<!-- Stronger directional light -->
+<a-entity 
+  light="type: directional; color: #FFFFFF; intensity: 1.2" 
+  position="2 5 3">
+</a-entity>
+
+<!-- Softer, whiter point lights -->
+<a-entity 
+  light="type: point; color: #FFFFFF; intensity: 0.8" 
+  position="-2 3 2">
+</a-entity>
+
+<a-entity 
+  light="type: point; color: #FFFFFF; intensity: 0.7" 
+  position="2 3 -2">
+</a-entity>
+
+        <!-- Jewelry Box Model -->
+        <a-entity 
+            id="jewelryBox"
+            gltf-model="#jewelryBoxModel"
+            position="0 0 1.5"
+            rotation="4 2 0"
+            scale="5 5 5">
+        </a-entity>
+        
+        <!-- RING 1 - Left Position -->
+        <a-entity 
+            id="ring1"
+            class="ring-group"
+            position="-0.25 0.4 1.55"
+            rotation="15 40 0"
+            scale="0.07 0.07 0.07"
+            data-origin="-0.25 0.4 1.55"
+            data-scale="0.07 0.07 0.07"
+            data-origin-rotation="15 40 0"
+            data-focus-rotation="0 45 0"
+            data-focus-scale="0.15 0.15 0.15"
+            data-focus-position="0 0.8 2.5"
+            data-camera-back="0.8"
+            ring-interaction
+            drag-rotate-y>
+            
+            <!-- LARGER Invisible clickable hitbox - Covers entire ring -->
+            <a-entity 
+                class="ring-hitbox"
+                ring-click
+                geometry="primitive: cylinder; radius: 3; height: 1"
+                material="opacity: 0; transparent: true; side: double"
+                rotation="0 0 0">
+            </a-entity>
+            
+            <!-- Actual ring model -->
+            <a-entity gltf-model="#ring1Model"></a-entity>
+        </a-entity>
+        
+        <!-- RING 2 - Center Position -->
+        <a-entity 
+            id="ring2"
+            class="ring-group"
+            position="0.05 0.2 1.6"
+            rotation="-80 40 0"
+            scale="0.07 0.07 0.07"
+            data-origin="0.05 0.2 1.6"
+            data-scale="0.07 0.07 0.07"
+            data-origin-rotation="-80 40 0"
+            data-focus-rotation="0 90 0"
+            data-focus-scale="0.15 0.15 0.15"
+            data-focus-position="0 0.8 2.5"
+            data-camera-back="0.8"
+            ring-interaction
+            drag-rotate-y>
+            
+            <!-- LARGER Invisible clickable hitbox -->
+            <a-entity
+                class="ring-hitbox"
+                ring-click
+                geometry="primitive: cylinder; radius: 2.5; height: 0"
+                material="opacity: 0; transparent: true; side: double"
+                rotation="0 0 0">
+            </a-entity>
+            
+            <!-- Actual ring model -->
+            <a-entity gltf-model="#ring2Model"></a-entity>
+        </a-entity>
+        
+        <!-- RING 3 - Right Position -->
+        <a-entity 
+            id="ring3"
+            class="ring-group"
+            position="0.3 0.4 1.9"
+            rotation="10 40 0"
+            scale="0.07 0.07 0.07"
+            data-origin="0.3 0.4 1.9"
+            data-scale="0.07 0.07 0.07"
+            data-origin-rotation="10 40 0"
+            data-focus-rotation="0 -45 0"
+            data-focus-scale="0.15 0.15 0.15"
+            data-focus-position="0 0.8 2.5"
+            data-camera-back="0.8"
+            ring-interaction
+            drag-rotate-y>
+            
+            <!-- LARGER Invisible clickable hitbox -->
+            <a-entity 
+                class="ring-hitbox"
+                ring-click
+                geometry="primitive: cylinder; radius: 3; height: 1"
+                material="opacity: 0; transparent: true; side: double"
+                rotation="0 0 0">
+            </a-entity>
+            
+            <!-- Actual ring model -->
+            <a-entity gltf-model="#ring3Model"></a-entity>
+        </a-entity>
+    </a-scene>
+    
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

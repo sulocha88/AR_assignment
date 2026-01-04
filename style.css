@@ -1,0 +1,65 @@
+/* ============================================
+   GLOBAL STYLES
+   ============================================ */
+
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Ensure canvas doesn't block touch events */
+canvas {
+    touch-action: none;
+}
+
+/* ============================================
+   CLOSE BUTTON UI
+   ============================================ */
+
+#closeButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 15px 30px;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    border: 2px solid #d4af37;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 1000;
+    display: none;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+#closeButton:hover {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: #fff;
+    transform: scale(1.05);
+}
+
+#closeButton:active {
+    transform: scale(0.95);
+}
+
+/* ============================================
+   LOADING MESSAGE
+   ============================================ */
+
+#loadingMessage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 18px;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px 40px;
+    border-radius: 10px;
+}
