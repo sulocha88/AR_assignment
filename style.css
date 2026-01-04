@@ -1,21 +1,12 @@
-/* ============================================
-   GLOBAL STYLES
-   ============================================ */
-
 body {
     margin: 0;
     overflow: hidden;
     font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* Ensure canvas doesn't block touch events */
 canvas {
     touch-action: none;
 }
-
-/* ============================================
-   CLOSE BUTTON UI
-   ============================================ */
 
 #closeButton {
     position: absolute;
@@ -46,10 +37,6 @@ canvas {
 #closeButton:active {
     transform: scale(0.95);
 }
-
-/* ============================================
-   LOADING MESSAGE
-   ============================================ */
 
 #loadingMessage {
     position: absolute;
